@@ -1,0 +1,264 @@
+/* High Grade KaiOS Styling */
+:root {
+  --bg-color: #1a1a1a;
+  --text-color: #ffffff;
+  --accent-color: #6200ee;
+  --accent-light: #bb86fc;
+  --header-bg: #3700b3;
+  --footer-bg: #222222;
+  --item-bg: #2a2a2a;
+  --item-active-bg: #6200ee;
+  --item-active-text: #ffffff;
+  --border-color: #444444;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+}
+
+#app-header {
+  background-color: var(--header-bg);
+  color: white;
+  padding: 8px 12px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  z-index: 10;
+}
+
+#list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+  scroll-behavior: smooth;
+}
+
+.item {
+  background-color: var(--item-bg);
+  padding: 12px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  transition: background-color 0.2s, transform 0.1s;
+  font-size: 14px;
+}
+
+.item.active {
+  background-color: var(--item-active-bg);
+  color: var(--item-active-text);
+  border-color: var(--accent-light);
+  transform: scale(1.02);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.item input {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  background: #fff;
+  color: #000;
+  font-size: 14px;
+  outline: none;
+}
+
+.item.active input {
+  box-shadow: 0 0 0 2px var(--accent-light);
+}
+
+.video-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.thumb-box {
+  position: relative;
+  width: 80px;
+  height: 45px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #000;
+}
+
+.video-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vid-time {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  background: rgba(0,0,0,0.8);
+  color: #fff;
+  font-size: 10px;
+  padding: 2px 4px;
+  border-radius: 2px;
+}
+
+.video-info {
+  flex: 1;
+  overflow: hidden;
+}
+
+.video-title {
+  font-weight: 600;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.video-meta {
+  font-size: 11px;
+  color: #aaa;
+  margin-top: 4px;
+}
+
+.item.active .video-meta {
+  color: #ddd;
+}
+
+.detail-header {
+  text-align: center;
+  padding: 16px;
+}
+
+.big-thumb {
+  width: 100%;
+  max-width: 200px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+}
+
+.icon-thumb {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.dl-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#app-footer {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--footer-bg);
+  padding: 6px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  border-top: 1px solid var(--border-color);
+  z-index: 10;
+}
+
+#sk-left, #sk-center, #sk-right {
+  flex: 1;
+  text-align: center;
+  text-transform: uppercase;
+}
+#sk-left { text-align: left; }
+#sk-right { text-align: right; }
+
+#player-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #000;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#main-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+#buffering-spinner {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+#center-icon {
+  position: absolute;
+  background: rgba(0,0,0,0.6);
+  border-radius: 50%;
+  padding: 10px;
+}
+
+#mute-indicator {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: red;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+#p-curr, #p-dur {
+  position: absolute;
+  bottom: 20px;
+  font-size: 12px;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+}
+
+#p-curr { left: 10px; }
+#p-dur { right: 10px; }
+
+#progress-fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  background: var(--accent-light);
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+.toasttext {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.8);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 16px;
+  font-size: 12px;
+  z-index: 200;
+  white-space: nowrap;
+}

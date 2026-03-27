@@ -1,0 +1,62 @@
+{
+  "name": "KaiTube",
+  "description": "A high-grade video and audio player for KaiOS",
+  "version": "1.0.0",
+  "launch_path": "/index.html",
+  "theme": "#3700b3",
+  "theme_color": "#3700b3",
+  "background_color": "#1a1a1a",
+  "fullscreen": "true",
+  "icons": {
+    "56": "/icons/icon56x56.png",
+    "112": "/icons/icon112x112.png"
+  },
+  "developer": {
+    "name": "KaiOS Developer",
+    "url": "https://example.com"
+  },
+  "type": "privileged",
+  "permissions": {
+    "systemXHR": {
+      "description": "Required to fetch videos and search results from YouTube"
+    },
+    "audio-channel-content": {
+      "description": "Required to play audio and video content"
+    },
+    "volumemanager": {
+      "description": "Required to control device volume"
+    },
+    "device-storage:sdcard": {
+      "access": "readwrite",
+      "description": "Required to download files to the SD card"
+    },
+    "device-storage:videos": {
+      "access": "readwrite",
+      "description": "Required to download videos"
+    },
+    "device-storage:music": {
+      "access": "readwrite",
+      "description": "Required to download audio"
+    },
+    "browser": {
+      "description": "Required for downloading files via hidden iframe"
+    }
+  },
+  "activities": {
+    "share": {
+      "filters": {
+        "type": ["url", "text/uri-list", "text/plain"]
+      },
+      "href": "/index.html",
+      "disposition": "window",
+      "returnValue": true
+    }
+  },
+  "locales": {
+    "en-US": {
+      "name": "KaiTube",
+      "description": "A high-grade video and audio player for KaiOS"
+    }
+  },
+  "default_locale": "en-US"
+}

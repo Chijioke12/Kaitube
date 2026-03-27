@@ -1,0 +1,5 @@
+{
+  "name": "KaiTube",
+  "description": "A high-grade video and audio player for KaiOS",
+  "requestFramePermissions": []
+}

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KaiOS Video App</title>
+  </head>
+  <body>
+    <div id="app-header">KaiTube</div>
+    <div id="list"></div>
+    <div id="app-footer">
+      <div id="sk-left"></div>
+      <div id="sk-center"></div>
+      <div id="sk-right"></div>
+    </div>
+    <div id="player-overlay" style="display:none;">
+       <video id="main-video"></video>
+       <div id="buffering-spinner" style="display:none;"></div>
+       <div id="center-icon" style="display:none;"></div>
+       <div id="mute-indicator" style="display:none;"></div>
+       <div id="p-curr"></div>
+       <div id="p-dur"></div>
+       <div id="progress-fill"></div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
+
