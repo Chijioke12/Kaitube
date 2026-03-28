@@ -1,6 +1,5 @@
 import { adjustVolume, forceVolumeChannel } from './volume';
 import { performSearch, processDirectLink, catchYoutubeURL, parseDownloads, VideoItem, DirectLinkInfo, proxify } from './extractor';
-import { initSimulator } from './simulator';
 import './style.css';
 
 // --- CONSTANTS (ICONS) ---
@@ -27,7 +26,13 @@ window.addEventListener('DOMContentLoaded', function() {
     
     forceVolumeChannel();
     renderHome(false);
-    initSimulator();
+    
+    // Only load the simulator in development mode
+    if (import.meta.env.DEV) {
+        import('./simulator').then(({ initSimulator }) => {
+            initSimulator();
+        });
+    }
 
     window.addEventListener('keydown', function(e) {
         if (currentView === 'PLAYER') {
