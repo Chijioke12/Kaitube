@@ -1,3 +1,19 @@
+// Fix for KaiOS/Firefox 48 "Cannot set property X of #<Window> which has only a getter"
+// This allows polyfills (like whatwg-fetch) to safely overwrite these properties.
+['fetch', 'Headers', 'Request', 'Response'].forEach(function(prop) {
+    if (typeof window !== 'undefined' && (window as any)[prop]) {
+        try {
+            Object.defineProperty(window, prop, {
+                value: (window as any)[prop],
+                writable: true,
+                configurable: true
+            });
+        } catch (e) {
+            console.error('Failed to redefine ' + prop + ':', e);
+        }
+    }
+});
+
 import { adjustVolume, forceVolumeChannel } from './volume';
 import { performSearch, processDirectLink, catchYoutubeURL, parseDownloads, VideoItem, DirectLinkInfo, proxify } from './extractor';
 import './style.css';
@@ -21,14 +37,15 @@ let lastSearchResults: VideoItem[] = [];
 let searchTimeout: any = null;
 
 // --- INIT ---
-window.addEventListener('DOMContentLoaded', function() {
+function initApp() {
     listContainer = document.getElementById('list') as HTMLElement;
     
     forceVolumeChannel();
     renderHome(false);
     
     // Only load the simulator in development mode
-    if (import.meta.env.DEV) {
+    const isDev = typeof import.meta !== 'undefined' && (import.meta as any).env && (import.meta as any).env.DEV;
+    if (isDev) {
         import('./simulator').then(({ initSimulator }) => {
             initSimulator();
         });
@@ -73,7 +90,13 @@ window.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-});
+}
+
+if (document.readyState === 'loading') {
+    window.addEventListener('DOMContentLoaded', initApp);
+} else {
+    initApp();
+}
 
 // --- NAV ---
 function refreshNav() {
