@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "tsx server.ts",
     "icons": "tsx scripts/generate-icons.js",
-    "build": "vite build",
+    "build": "vite build && node scripts/csp-fix.js",
     "package": "npm run icons && npm run build && tsx scripts/package-omnisd.js",
     "preview": "vite preview",
     "start": "node server.ts",
